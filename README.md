@@ -1,127 +1,273 @@
-<p align="center">
-  <img src=".github/logo.png" width="300" height="175" alt="Bootstrap npm logo">
-</p>
+# Angular Bootstrap
 
-<h3 align="center">Bootstrap npm starter template</h3>
 
-<p align="center">Create new Bootstrap-powered npm projects in no time.</p>
+Application example built with [Angular](https://angular.io/) 15 and adding the Bootstrap CSS framework using the [bootstrap](https://www.npmjs.com/package/bootstrap) and [@ng-bootstrap/ng-bootstrap](https://www.npmjs.com/package/@ng-bootstrap/ng-bootstrap) libraries.
 
-## About
+This tutorial was posted on my [blog](https://rodrigo.kamada.com.br/blog/adicionando-o-framework-de-css-bootstrap-em-uma-aplicacao-angular) in portuguese and on the [DEV Community](https://dev.to/rodrigokamada/adding-the-bootstrap-css-framework-to-an-angular-application-2k40) in english.
 
-`bootstrap-npm-starter` is a GitHub template repository for creating new Bootstrap 4 based npm projects, maintained by Bootstrap co-author @mdo. You can also use it as your own Bootstrap prototyping sandbox. For Bootstrap 5 examples, see [our new `twbs/examples` repo](https://github.com/twbs/examples).
 
-[![Build Status](https://github.com/twbs/bootstrap-npm-starter/workflows/CI/badge.svg)](https://github.com/twbs/bootstrap-npm-starter/actions)
 
-## Repo template
+[![Website](https://shields.braskam.com/v1/shields?name=website&format=rectangle&size=small&radius=5)](https://rodrigo.kamada.com.br)
+[![LinkedIn](https://shields.braskam.com/v1/shields?name=linkedin&format=rectangle&size=small&radius=5)](https://www.linkedin.com/in/rodrigokamada)
+[![Twitter](https://shields.braskam.com/v1/shields?name=twitter&format=rectangle&size=small&radius=5&socialAccount=rodrigokamada)](https://twitter.com/rodrigokamada)
+[![Instagram](https://shields.braskam.com/v1/shields?name=instagram&format=rectangle&size=small&radius=5)](https://www.instagram.com/rodrigokamada/)
 
-Setup as a starter template, you can easily generate a new GitHub repository. From the repository homepage, click the `Use this template` button.
 
-## What's included
 
-- Single HTML page (`index.html`) to demonstrate how to include Bootstrap.
-- Includes [Bootstrap](https://getbootstrap.com) (currently using v4.6.2) source files via npm.
-- Includes [Bootstrap Icons](https://icons.getbootstrap.com) (v1.9.1), which includes over 1,800 icons available as SVGs and web fonts.
-- npm scripts (see `package.json`) for compiling and autoprefixing Sass, watching for changes, and starting a local server with live reload.
-- Example stylesheet (`scss/starter.scss`) highlighting two ways to include and customize Bootstrap.
-- Example JavaScript file (`assets/js/starter.js`) showing how to import all of Bootstrap, or just the parts you need.
+## Prerequisites
 
-## Usage
 
-Be sure to have [Node.js](https://nodejs.org/) installed before proceeding. **We recommend using Node's LTS releases, which is currently at v16.x. We only test our compiled CSS against v16.**
+Before you start, you need to install and configure the tools:
 
-```shell
-# Clone the repo
-git clone https://github.com/twbs/bootstrap-npm-starter
-cd bootstrap-npm-starter
+* [git](https://git-scm.com/)
+* [Node.js and npm](https://nodejs.org/)
+* [Angular CLI](https://angular.io/cli)
+* IDE (e.g. [Visual Studio Code](https://code.visualstudio.com/))
 
-# Install dependencies
-npm i
 
-# Compile Sass
-npm run css-compile
 
-# Start server and watch Sass
-npm start
+## Getting started
 
-# Watch Sass for changes (uses nodemon)
-npm run watch
 
-# Start local server
-npm run server
+### Create the Angular application
 
-# Watches Sass for changes and starts a local server
-npm start
-```
 
-For the most straightforward development, open Terminal and run `npm start`.
-
-Open <http://localhost:3000> to see the page in action.
-
-## Scripts
-
-The following npm scripts are available to you in this starter repo. With the exception of `npm start` and `npm test`, the remaining scripts can be run from your command line with `npm run scriptName`.
-
-| Script | Description |
-| --- | --- |
-| `server` | Starts a local server (<http://localhost:3000>) for development with live reloads |
-| `watch` | Automatically recompiles CSS as it watches the `scss` directory for changes |
-| `css` | Runs `css-compile` and `css-prefix` |
-| `css-compile` | Compiles source Sass into CSS |
-| `css-lint` | Runs [Stylelint](https://stylelint.io) against source Sass for code quality |
-| `css-prefix` | Runs [Autoprefixer](https://github.com/postcss/autoprefixer) on the compiled CSS |
-| `css-purge` | Runs [PurgeCSS](https://purgecss.com) to remove CSS that is unused by `index.html` |
-| `test` | Runs `css-lint` and `css`, in sequential order |
-
-## Advanced usage
-
-Take this starter repository to another level with some built-in addons that you can enable and customize.
-
-### Optimizing CSS
-
-Before you start to use tools that remove Bootstrap styling like [PurgeCSS](#purgecss), you can make some broad optimizations by only including the stylesheets you think you'll need.
-
-Look to the `scss/starter.scss` file for your two options of including all of Bootstrap, or a subset of our styles and components. By default we've only imported the stylesheets that Bootstrap requires plus those of the components we're planning to use.
-
-Uncomment specific lines as needed, then recompile to use them.
-
-### Optimizing JS
-
-Similar to optimizing CSS, we publish individual scripts for each of our plugins. This allows you to import only what you need, versus the entire bundle and dependencies. For example, if you don't plan on using dropdowns, tooltips, or popovers, you can safely omit the Popper.js depdendency. Bootstrap 4 requires jQuery though, so you won't be able to safely remove that until v5 launches.
-
-See the `js/starter.js` file for an example of how to import all of Bootstrap's JS or just the individual pieces. By default we've only imported our modal JavaScript since we have no need for anything else.
-
-You can add more options here, or import the entire `bootstrap-bundle.min.js` file, to get all JavaScript plugins and Popper.js.
-
-### PurgeCSS
-
-[PurgeCSS](https://purgecss.com/) is a [PostCSS](https://postcss.org) plugin that removes unused CSS based on your site's HTML. It finds rulesets that are unused by your HTML and removes them, ensuring only what's needed is sent to your site's visitors while improving file size and performance.
-
-We've included a single npm script that runs PurgeCSS against our single `index.html` file to remove unused styles from `assets/css/starter.css`.
-
-To purge your CSS, run `npm run css-purge` from the command line. This executes the following:
+**1.** Let's create the application with the Angular base structure using the `@angular/cli` with the route file and the SCSS style format.
 
 ```shell
-npm purgecss --css assets/css/starter.css --content index.html --output assets/css/
+ng new angular-bootstrap
+? Would you like to add Angular routing? Yes
+? Which stylesheet format would you like to use? SCSS   [ https://sass-lang.com/documentation/syntax#scss                ]
+CREATE angular-bootstrap/README.md (1062 bytes)
+CREATE angular-bootstrap/.editorconfig (274 bytes)
+CREATE angular-bootstrap/.gitignore (604 bytes)
+CREATE angular-bootstrap/angular.json (3273 bytes)
+CREATE angular-bootstrap/package.json (1079 bytes)
+CREATE angular-bootstrap/tsconfig.json (783 bytes)
+CREATE angular-bootstrap/.browserslistrc (703 bytes)
+CREATE angular-bootstrap/karma.conf.js (1434 bytes)
+CREATE angular-bootstrap/tsconfig.app.json (287 bytes)
+CREATE angular-bootstrap/tsconfig.spec.json (333 bytes)
+CREATE angular-bootstrap/src/favicon.ico (948 bytes)
+CREATE angular-bootstrap/src/index.html (302 bytes)
+CREATE angular-bootstrap/src/main.ts (372 bytes)
+CREATE angular-bootstrap/src/polyfills.ts (2820 bytes)
+CREATE angular-bootstrap/src/styles.scss (80 bytes)
+CREATE angular-bootstrap/src/test.ts (743 bytes)
+CREATE angular-bootstrap/src/assets/.gitkeep (0 bytes)
+CREATE angular-bootstrap/src/environments/environment.prod.ts (51 bytes)
+CREATE angular-bootstrap/src/environments/environment.ts (658 bytes)
+CREATE angular-bootstrap/src/app/app-routing.module.ts (245 bytes)
+CREATE angular-bootstrap/src/app/app.module.ts (393 bytes)
+CREATE angular-bootstrap/src/app/app.component.scss (0 bytes)
+CREATE angular-bootstrap/src/app/app.component.html (23809 bytes)
+CREATE angular-bootstrap/src/app/app.component.spec.ts (1090 bytes)
+CREATE angular-bootstrap/src/app/app.component.ts (222 bytes)
+✔ Packages installed successfully.
+    Successfully initialized git.
 ```
 
-PurgeCSS is a PostCSS plugin and [can be configured](https://purgecss.com/configuration.html) to your exact needs with a little extra effort, including additional [command line options](https://purgecss.com/CLI.html).
+**2.** Install the `bootstrap` and `bootstrap-icons` libraries.
 
-## Actions CI
+```shell
+npm install bootstrap bootstrap-icons
+```
 
-We've included some simple GitHub Actions in this template repo. When you generate your new project from here, you'll have the same tests that run whenever a pull request is created. We've included Actions for the following:
+**3.** Configure the `bootstrap` and `bootstrap-icons` libraries. Change the `angular.json` file and add the `bootstrap.scss`, `bootstrap-icons.css` and `bootstrap.bundle.min.js` files as below.
 
-- Stylelint for your CSS
+```json
+"styles": [
+  "node_modules/bootstrap/scss/bootstrap.scss",
+  "node_modules/bootstrap-icons/font/bootstrap-icons.css",
+  "src/styles.scss"
+],
+"scripts": [
+  "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+]
+```
 
-When your repository is generated, you won't see anything in the Actions tab until you create a new pull request. You can customize these Actions, add new ones, or remove them outright if you wish.
+**4.** Install the `@ng-bootstrap/ng-bootstrap` library.
 
-[Learn more about GitHub Actions](https://github.com/features/actions), [read the Actions docs](https://help.github.com/en/actions), or [browse the Actions Marketplace](https://github.com/marketplace/actions).
+```shell
+npm install @ng-bootstrap/ng-bootstrap@next
+```
 
-### Stylelint
+**5.** Import the `NgbModule` module. Change the `app.module.ts` file and add the lines as below.
 
-Stylelint is included, as is Bootstrap's default Stylelint config, [stylelint-config-twbs-bootstrap](https://github.com/twbs/stylelint-config-twbs-bootstrap). This is the same linter configuration we use in the main Bootstrap project. It's run via the `npm test` command, which is invoked in our `ci.yml` Actions workflow file.
+```typescript
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-At the root of the repo, `.stylelintignore` is used to list files that we ignore when linting and `.stylelintrc` is where we tell Stylelint to use the Bootstrap config. The former is recommended based on your specific needs, while the latter is required.
+imports: [
+  BrowserModule,
+  NgbModule,
+  AppRoutingModule,
+],
+```
 
-## Copyright
+**6.** Remove the contents of the `AppComponent` class from the `src/app/app.component.ts` file. Import the `NgbModal` service and create the `open` method as below.
 
-&copy; @mdo 2020-2022 and licensed MIT.
+```typescript
+import { Component } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
+})
+export class AppComponent {
+
+  constructor(private modalService: NgbModal) {
+  }
+
+  public open(modal: any): void {
+    this.modalService.open(modal);
+  }
+
+}
+```
+
+**7.** Remove the contents of the `src/app/app.component.html` file. Add some components as below.
+
+```html
+<nav class="navbar navbar-expand-xl navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <h1>Angular Bootstrap</h1>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdown
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+<div class="container-fluid py-3">
+  <div class="row my-3">
+    <div class="col">
+      <label for="exampleFormControlInput1" class="form-label">Email address</label>
+      <input type="email" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="name@example.com">
+    </div>
+  </div>
+  <div class="row my-3">
+    <div class="col">
+      <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+      <textarea class="form-control form-control-sm" id="exampleFormControlTextarea1" rows="3"></textarea>
+    </div>
+  </div>
+  <div class="row my-3">
+    <div class="col">
+      <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+        <label class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox input</label>
+      </div>
+    </div>
+  </div>
+  <div class="row my-3">
+    <div class="col">
+      <button class="btn btn-sm btn-outline-primary" (click)="open(demoModal)">Launch demo modal</button>
+    </div>
+  </div>
+</div>
+
+<ng-template #demoModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label for="dateOfBirth">Date of birth</label>
+        <div class="input-group">
+          <input id="dateOfBirth" name="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" ngbDatepicker #dp="ngbDatepicker">
+          <button type="button" class="btn btn-outline-secondary bi bi-calendar" (click)="dp.toggle()"></button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+  </div>
+</ng-template>
+```
+
+**8.** Run the application with the command below.
+
+```shell
+npm start
+
+> angular-bootstrap@1.0.0 start
+> ng serve
+
+✔ Browser application bundle generation complete.
+
+Initial Chunk Files | Names         |      Size
+vendor.js           | vendor        |   3.38 MB
+styles.css          | styles        | 255.86 kB
+polyfills.js        | polyfills     | 128.56 kB
+scripts.js          | scripts       |  76.94 kB
+main.js             | main          |  22.81 kB
+runtime.js          | runtime       |   6.59 kB
+
+                    | Initial Total |   3.86 MB
+
+Build at: 2021-06-27T21:28:22.756Z - Hash: 122b9fa4d57b962e7bcc - Time: 21933ms
+
+** Angular Live Development Server is listening on localhost:4200, open your browser on http://localhost:4200/ **
+
+
+✔ Compiled successfully.
+```
+
+**9.** Ready! Access the URL `http://localhost:4200/` and check if the application is working. See the application working on [GitHub Pages](https://rodrigokamada.github.io/angular-bootstrap/) and [Stackblitz](https://stackblitz.com/edit/angular15-bootstrap).
+
+![Angular Bootstrap](https://res.cloudinary.com/rodrigokamada/image/upload/v1636720395/Blog/angular-bootstrap/angular-bootstrap.png)
+
+
+
+## Cloning the application
+
+**1.** Clone the repository.
+
+```shell
+git clone git@github.com:rodrigokamada/angular-bootstrap.git
+```
+
+**2.** Install the dependencies.
+
+```shell
+npm ci
+```
+
+**3.** Run the application.
+
+```shell
+npm start
+```
